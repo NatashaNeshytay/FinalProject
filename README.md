@@ -1,1 +1,1 @@
-# FinalProject
+# mentoring-simple-webpack-starter
