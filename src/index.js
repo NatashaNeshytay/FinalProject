@@ -1,3 +1,6 @@
 import './main.scss';
+import './App';
 
-console.log('Hello IT-academy student 🚀');
+const root = document.querySelector('#root');
+const app = document.createElement('it-app');
+root.append(app);
