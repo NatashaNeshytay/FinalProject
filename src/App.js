@@ -1,5 +1,7 @@
-import { Component } from "./core/Component";
-import "./components/organisms/Navigation";
+import { Component } from './core/Component';
+import './components/organisms/Navigation';
+import './././components/molecules/Footer';
+import './././components/pages/Shop';
 
 class App extends Component {
   constructor() {
@@ -10,7 +12,9 @@ class App extends Component {
   }
   render() {
     return `
-<it-navigation></it-navigation>
+      <it-navigation></it-navigation>
+      <vegefoods-shop></vegefoods-shop>
+      <vegefoods-footer></vegefoods-footer>
     `;
   }
 }
