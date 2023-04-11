@@ -1,6 +1,69 @@
 import { Component } from "../../../core/Component";
 
 class Shop extends Component {
+	constructor() {
+		super();
+		this.state = {
+		  products: PRODUCTS,
+		  limit: 12,
+		  currentPage: 1,
+		};
+	  }
+	  sliceData(currentPage = 1) {
+		const { limit } = this.state;
+	
+		const start = (currentPage - 1) * limit;
+		const end = currentPage * limit;
+	
+		return this.state.products.slice(start, end);
+	  }
+	
+	  onChangePaginationPage = (evt) => {
+		this.setState((state) => {
+		  return {
+			...state,
+			currentPage: Number(evt.detail.page),
+		  };
+		});
+		window.scrollTo(0, { behavior: 'smooth' });
+	  };
+	
+	  onFilterProductsByCategory = (evt) => {
+		const { selectedCategory } = evt.detail;
+		this.setState((state) => {
+		  return {
+			...state,
+			products: PRODUCTS.filter((item) => item.category.id === selectedCategory.id),
+			currentPage: 1,
+		  };
+		});
+	  };
+	
+	  onSearch = (evt) => {
+		const { data } = evt.detail;
+		this.setState((state) => {
+		  return {
+			...state,
+			products: PRODUCTS.filter((item) => {
+			  return item.title.toLowerCase().includes(data.search.toLowerCase());
+			}),
+			currentPage: 1,
+		  };
+		});
+	  };
+	
+	  componentDidMount() {
+		this.sliceData();
+		eventEmmiter.on(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+		eventEmmiter.on(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+		eventEmmiter.on(APP_EVENTS.searchProducts, this.onSearch);
+	  }
+	
+	  componentWillUnmount() {
+		eventEmmiter.off(APP_EVENTS.changePaginationPage, this.onChangePaginationPage);
+		eventEmmiter.off(APP_EVENTS.setCategory, this.onFilterProductsByCategory);
+		eventEmmiter.off(APP_EVENTS.searchProducts, this.onSearch);
+	  }
     render() {
       return `
       <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">

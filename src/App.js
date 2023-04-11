@@ -1,6 +1,6 @@
 import { Component } from './core/Component';
 import './components/organisms/Navigation';
-import './././components/molecules/Footer';
+import './components/molecules/Footer';
 import './components/pages/ShopPage';
 
 class App extends Component {

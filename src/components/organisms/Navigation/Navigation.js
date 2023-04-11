@@ -1,4 +1,7 @@
 import { Component } from "../../../core/Component";
+import { APP_ROUTES } from "../../../constants/appRoutes";
+import { appPages } from "../../../constants/appPages";
+import "../../molecules/MenuItems";
 
 class Navigation extends Component {
   constructor() {
@@ -8,36 +11,37 @@ class Navigation extends Component {
     };
   }
   render() {
-    return ` 
-      <div class="container nav-justified fixed-top">
+    return `  
+    <div class="container nav-justified">
       <nav class="navbar navbar-expand-lg nav-justified bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Vegefoods</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+    <menu-items 
+              items='${JSON.stringify(appPages)}'
+            ></menu-items>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
+          <a class="nav-link active" aria-current="page" href="#"></a>
+        </li>     
       </ul>
+      <ul class="navbar-nav">
+              <li class="nav-item">
+              <route-link to="${APP_ROUTES.cart}">
+                <a class="nav-link position-relative" href="${APP_ROUTES.cart}">
+                  <img src="./assets/images/basket.svg" alt="cart" width="24" height="24">
+                  <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
+                    ${this.state.productsCount}
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </a>
+              </route-link>
+              </li>
+            </ul>
+                                
     </div>
   </div>
 </nav>
@@ -47,3 +51,16 @@ class Navigation extends Component {
 }
 
 customElements.define("it-navigation", Navigation);
+
+{
+  /* <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown link
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li> */
+}
