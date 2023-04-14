@@ -2,6 +2,8 @@ import { Component } from "../../../core/Component";
 import { APP_ROUTES } from "../../../constants/appRoutes";
 import { appPages } from "../../../constants/appPages";
 import "../../molecules/MenuItems";
+import "../../atoms/Logo";
+import "./navigation.scss";
 
 class Navigation extends Component {
   constructor() {
@@ -14,38 +16,30 @@ class Navigation extends Component {
     return `  
     <div class="container nav-justified">
       <nav class="navbar navbar-expand-lg nav-justified bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Vegefoods</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-    <menu-items 
+        <div class="container-fluid">
+          <vegefoods-logo></vegefoods-logo>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <menu-items 
               items='${JSON.stringify(appPages)}'
             ></menu-items>
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"></a>
-        </li>     
-      </ul>
-      <ul class="navbar-nav">
+            <ul class="navbar-nav">
               <li class="nav-item">
-              <route-link to="${APP_ROUTES.cart}">
-                <a class="nav-link position-relative" href="${APP_ROUTES.cart}">
-                  <img src="./assets/images/basket.svg" alt="cart" width="24" height="24">
-                  <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
+                <route-link to="${APP_ROUTES.cart}">
+                  <a class="nav-link position-relative" href="${
+                    APP_ROUTES.cart
+                  }">
+                    <img src="./assets/images/basket.svg" alt="cart" width="24" height="24">
+                    <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
                     ${this.state.productsCount}
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
-                </a>
-              </route-link>
+                    </span>
+                  </a>
+                </route-link>
               </li>
-            </ul>
-                                
+            </ul>                           
+          </div>
+        </div>
+      </nav>
     </div>
-  </div>
-</nav>
-</div>
 `;
   }
 }

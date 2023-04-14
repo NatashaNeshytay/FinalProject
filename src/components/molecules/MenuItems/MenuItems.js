@@ -1,6 +1,5 @@
 import { Component } from "../../../core/Component";
 import "../../../core/Router/Link";
-
 import "../../atoms/Link";
 
 class MenuItems extends Component {
@@ -26,12 +25,12 @@ class MenuItems extends Component {
           .map((item) => {
             return `
               <li class="nav-item">
-              <route-link to="${item.href}">
-                <it-link
-                  class="${this.isActive(item) ? "active" : ""}"
-                  href="${item.href ? item.href : ""}"
-                  content="${item.label}"
-                ></it-link>
+                <route-link to="${item.href}">
+                  <vegefoods-link
+                    class="${this.isActive(item) ? "active" : ""}"
+                    href="${item.href ? item.href : ""}"
+                    content="${item.label}"
+                  ></vegefoods-link>
                 </route-link>
               </li>
             `;

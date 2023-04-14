@@ -1,9 +1,9 @@
 export const APP_ROUTES = {
-  home: "home",
-  catalog: "/",
+  home: "/",
+  catalog: "/catalog",
   blog: "/blog",
   contacts: "/contacts",
-  cart: "/cart",
-  product: "/catalog/:id",
+  // cart: "/cart",
+  card: "/card",
   admin: "/admin",
 };

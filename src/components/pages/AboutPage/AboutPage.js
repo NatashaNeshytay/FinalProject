@@ -1,6 +1,6 @@
 import { Component } from "../../../core/Component";
 
-class About extends Component {
+class AboutPage extends Component {
     render() {
       return `
         <h1>AboutPage</h1>
@@ -8,4 +8,4 @@ class About extends Component {
     }
 }
 
-customElements.define('vegefoods-about', About);
+customElements.define('about-page', AboutPage);

@@ -18,6 +18,10 @@ export const appPages = [
     label: 'Контакты',
   },
   {
+    href: APP_ROUTES.card,
+    label: 'Корзина',
+  },
+  {
     href: APP_ROUTES.admin,
     label: 'Admin',
   },

@@ -1,6 +1,6 @@
 import { Component } from "../../../core/Component";
 
-class Error extends Component {
+class ErrorPage extends Component {
   render() {
     return `
         <h1>ErrorPage</h1>
@@ -8,4 +8,4 @@ class Error extends Component {
   }
 }
 
-customElements.define("vegefoods-error", Error);
+customElements.define('error-page', ErrorPage);

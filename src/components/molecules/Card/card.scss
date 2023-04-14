@@ -1,0 +1,11 @@
+@import '../../../scss/mixins.scss';
+
+.fix-line-of-description {
+  @include sliceByLine;
+  min-height: 80px
+}
+
+.fix-line-of-title {
+  @include sliceByLine(2);
+  min-height: 50px;
+}

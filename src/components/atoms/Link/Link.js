@@ -30,4 +30,4 @@ class Link extends Component {
   }
 }
 
-customElements.define("it-link", Link);
+customElements.define("vegefoods-link", Link);

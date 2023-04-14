@@ -1,6 +1,6 @@
 import { Component } from "../../../core/Component";
 
-class Contacts extends Component {
+class ContactsPage extends Component {
   render() {
     return `
         <h1>ContactsPage</h1>
@@ -8,4 +8,4 @@ class Contacts extends Component {
   }
 }
 
-customElements.define("vegefoods-contacts", Contacts);
+customElements.define('contacts-page', ContactsPage);

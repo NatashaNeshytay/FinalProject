@@ -1,9 +1,10 @@
 import { Component } from "../../../core/Component";
 
-class BlogPage extends Component {
+class CardPage extends Component {
   render() {
     return `
-        <h1>BlogPage</h1>
+        <h1>CardPage</h1>
+
 
         <div class="cart-table table-responsive">
         <table class="table table-bordered">
@@ -97,4 +98,4 @@ class BlogPage extends Component {
   }
 }
 
-customElements.define('blog-page', BlogPage);
+customElements.define('card-page', CardPage);
