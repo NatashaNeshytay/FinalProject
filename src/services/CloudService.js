@@ -1,14 +1,14 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from "firebase/app";
 
 class CloudService {
   constructor() {
     this._config = {
       apiKey: process.env.API_KEY,
-      authDomain: 'it-shop-7e932.firebaseapp.com',
-      projectId: 'it-shop-7e932',
-      storageBucket: 'it-shop-7e932.appspot.com',
-      messagingSenderId: '1078956985327',
-      appId: '1:1078956985327:web:8072edd24e42b207b4841a',
+      authDomain: "final-progect-eb716.firebaseapp.com",
+      projectId: "final-progect-eb716",
+      storageBucket: "final-progect-eb716.appspot.com",
+      messagingSenderId: "977750211633",
+      appId: "1:977750211633:web:46f6fff588e11d5fc5a910",
     };
     this.app = initializeApp(this._config);
   }
