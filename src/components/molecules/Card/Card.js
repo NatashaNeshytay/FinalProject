@@ -29,7 +29,7 @@ class Card extends Component {
 
     return `
       <div class="card">
-        <img class="image-fit" src="${image}"
+        <img class="image-fit fix-line-of-image" src="${image}"
           class="card-img-top" alt="image">
         <div class="card-body">
           <h5 class="card-title fix-line-of-title">${title}</h5>

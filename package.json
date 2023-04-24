@@ -39,6 +39,7 @@
     "bootstrap": "^5.2.3",
     "dotenv-webpack": "^8.0.1",
     "firebase": "^9.19.1",
-    "reset.css": "^2.0.2"
+    "reset.css": "^2.0.2",
+    "swiper": "^9.2.4"
   }
 }
