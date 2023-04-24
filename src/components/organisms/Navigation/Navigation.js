@@ -75,8 +75,8 @@ class Navigation extends Component {
 
   render() {
     return `  
-    <div class="container nav-justified">
-      <nav class="navbar navbar-expand-lg nav-justified bg-body-tertiary">
+
+      <nav class="navbar navbar-expand-lg nav-justified bg-body-tertiary" style="background-color: #e3f2fd;">
         <div class="container-fluid">
           <vegefoods-logo></vegefoods-logo>
           <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
@@ -99,7 +99,7 @@ class Navigation extends Component {
           </div>
         </div>
       </nav>
-    </div>
+   
 `;
   }
 }

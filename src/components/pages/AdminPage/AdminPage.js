@@ -48,7 +48,8 @@ class AdminPage extends Component {
   };
 
   createProduct = ({ detail }) => {
-    this.setIsLoading();
+    console.log(detail)
+    
     const { data } = detail;
     firebaseStorageService
       .uploadFile(data.preview, 'products')

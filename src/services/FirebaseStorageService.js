@@ -1,5 +1,5 @@
-import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
-import { cloudService } from './CloudService';
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { cloudService } from "./CloudService";
 
 class FirebaseStorageService {
   constructor() {
@@ -8,7 +8,7 @@ class FirebaseStorageService {
 
   uploadFile(file, path) {
     const fileRef = ref(this.storage, `${path}/${file.name}`);
-    return uploadBytes(fileRef);
+    return uploadBytes(fileRef, file);
   }
 
   downloadURL(ref) {
