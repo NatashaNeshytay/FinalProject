@@ -3,6 +3,7 @@ import { APP_STORAGE_KEYS } from "../../../constants/appStorageKeys";
 import { storageService } from "../../../services/StorageService";
 import { eventEmmiter } from "../../../core/EventEmmiter";
 import { APP_EVENTS } from "../../../constants/appEvents";
+import "./cardPage.scss";
 
 class CardPage extends Component {
   constructor() {
@@ -57,7 +58,6 @@ class CardPage extends Component {
     if (evt.target.closest(".plus")) {
       const id = evt.target.dataset.id;
       const items = this.state.products;
-      // console.log(updatedItems);
       const updatedItems = items.map((item) => {
         if (item.id === id) {
           return {
@@ -69,11 +69,9 @@ class CardPage extends Component {
       });
       storageService.setItem(APP_STORAGE_KEYS.cartData, updatedItems);
     }
-    // this.setState({ products: updatedItems });
-   
   };
 
-   onStorage = (evt) => {
+  onStorage = (evt) => {
     this.setProducts(evt.detail.data);
   };
 
@@ -90,13 +88,20 @@ class CardPage extends Component {
     this.removeEventListener("click", this.onDeleteIteem);
     this.removeEventListener("click", this.onAddIteem);
   }
+
+  sum(products) {
+    return products.reduce((acc, item) => {
+      return (acc += item.quantity ? item.price * item.quantity : item.price);
+    }, 0);
+  }
+
   render() {
     return `
         <h1>CardPage</h1>
           <div class="container mt-5">
             <div class="cart-table table-responsive">
                 <table class="table table-bordered text-center">
-                <thead>
+                <thead class="table-info">
                     <tr>
                         <th class='pro-id'>id</th>
                         <th class="pro-thumbnail">Картинка</th>
@@ -112,7 +117,7 @@ class CardPage extends Component {
                         return `              
                     <tr>
                         <td>${index + 1}</td>
-                        <td class="pro-thumbnail"><img class="img-fluid" src='${
+                        <td class="pro-thumbnail col-3"><img class="img-fluid" src='${
                           item.image
                         }' alt="Product" /></a></td>
                         <td class="pro-title">${item.title}</td>
@@ -141,7 +146,15 @@ class CardPage extends Component {
                   `;
                       })
                       .join(" ")}
-              </tbody>
+              <tfooter>
+              <tr>
+              <td colspan="3"><b>Итого:</b></td>
+              <td colspan="3">${new Intl.NumberFormat("ru-Ru", {
+                style: "currency",
+                currency: "BYN",
+              }).format(this.sum(this.state.products))}</td>
+              </tr>
+              </tfooter>
             </table>
         </div>
     </div>

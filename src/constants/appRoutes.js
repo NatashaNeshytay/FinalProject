@@ -1,9 +1,13 @@
 export const APP_ROUTES = {
-  home: "/",
-  catalog: "/catalog",
+ 
+  catalog: "/",
   blog: "/blog",
-  contacts: "/contacts",
+ 
   // cart: "/cart",
   card: "/card",
   admin: "/admin",
+  signUp: '/sign-up',
+  signIn: '/sign-in',
+  signOut: '/signOut',
+  profile: '/profile',
 };

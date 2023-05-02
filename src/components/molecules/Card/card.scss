@@ -1,11 +1,5 @@
 @import '../../../scss/mixins.scss';
 
-
-// .fix-line-of-image {
-//   @include sliceByLine;
-//   min-height: 120px
-// }
-
 .fix-line-of-image {
   @include sliceByLine;
   min-height: 210px
@@ -20,15 +14,3 @@
   @include sliceByLine(3);
   min-height: 50px;
 }
-
-// .fix-line-of-image {
-//   @include sliceByLine;
-//   min-height: 150px;
-//   min-width: 200px
-// }
-
-// .fix-line-of-title {
-//   @include sliceByLine(2);
-//   min-height: 48px;
-// }
-

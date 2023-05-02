@@ -1,22 +1,24 @@
-import { APP_EVENTS } from '../../../constants/appEvents';
-import { Component } from '../../../core/Component';
-import { eventEmmiter } from '../../../core/EventEmmiter';
-import { databaseService } from '../../../services/DatabaseService';
-import { menuItems } from './constants';
-import { forms } from './constants';
-import { FIRESTORE_KEYS } from '../../../constants/firestoreKeys';
-import '../../molecules/Tabs';
-import '../../molecules/Preloader';
-import '../../organisms/BlogForm';
-import '../../organisms/CategoryForm';
-import '../../organisms/ProductForm';
-import { firebaseStorageService } from '../../../services/FirebaseStorageService';
+import { APP_EVENTS } from "../../../constants/appEvents";
+import { Component } from "../../../core/Component";
+import { eventEmmiter } from "../../../core/EventEmmiter";
+import { databaseService } from "../../../services/DatabaseService";
+import { menuItems } from "./constants";
+import { forms } from "./constants";
+import { FIRESTORE_KEYS } from "../../../constants/firestoreKeys";
+import "../../molecules/Tabs";
+import "../../molecules/Preloader";
+import "../../organisms/BlogForm";
+import "../../organisms/CategoryForm";
+import "../../organisms/ProductForm";
+import { firebaseStorageService } from "../../../services/FirebaseStorageService";
 
 class AdminPage extends Component {
   constructor() {
     super();
     this.state = {
       activeTab: menuItems[0],
+      categories: [],
+      isLoading: false,
     };
   }
 
@@ -30,17 +32,18 @@ class AdminPage extends Component {
     });
   };
 
-  setIsLoading = () => {
+  setIsLoading = (isLoading) => {
     this.setState((state) => {
       return {
         ...state,
-        isLoading: !state.isLoading,
+        isLoading,
       };
     });
   };
 
   createCategory = ({ detail }) => {
     databaseService.createDocument(FIRESTORE_KEYS.categories, detail.data);
+    this.getAllCategories();
   };
 
   onChangeTab = ({ detail }) => {
@@ -48,14 +51,13 @@ class AdminPage extends Component {
   };
 
   createProduct = ({ detail }) => {
-    console.log(detail)
-    
+    this.setIsLoading(true);
     const { data } = detail;
     firebaseStorageService
-      .uploadFile(data.preview, 'products')
+      .uploadFile(data.preview, "products")
       .then((snapshot) => {
         firebaseStorageService.downloadURL(snapshot.ref).then((url) => {
-          databaseService.createDocument('products', {
+          databaseService.createDocument("products", {
             ...data,
             preview: url,
           });
@@ -69,11 +71,34 @@ class AdminPage extends Component {
       });
   };
 
+  setCategories(categories) {
+    this.setState((state) => {
+      return {
+        ...state,
+        categories,
+      };
+    });
+  }
+
+  getAllCategories = async () => {
+    this.setIsLoading(true);
+    try {
+      const data = await databaseService.getCollection(
+        FIRESTORE_KEYS.categories
+      );
+      this.setCategories(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setIsLoading(false);
+    }
+  };
+
   componentDidMount() {
+    this.getAllCategories();
     eventEmmiter.on(APP_EVENTS.changeTab, this.onChangeTab);
     eventEmmiter.on(APP_EVENTS.createCategory, this.createCategory);
     eventEmmiter.on(APP_EVENTS.createProduct, this.createProduct);
-    this.setIsLoading();
   }
 
   componentWillUnmount() {
@@ -92,7 +117,7 @@ class AdminPage extends Component {
                   active-item='${JSON.stringify(this.state.activeTab)}'>
                </it-tabs>
                <div class="md-3 border-start border p-3">
-                   ${forms[this.state.activeTab.id]}
+                   ${forms(this.state)[this.state.activeTab.id]}
                </div>
             </div>
          </div>
@@ -100,4 +125,4 @@ class AdminPage extends Component {
       `;
   }
 }
-customElements.define('admin-page', AdminPage);
+customElements.define("admin-page", AdminPage);

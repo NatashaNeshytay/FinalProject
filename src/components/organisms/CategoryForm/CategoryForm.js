@@ -27,7 +27,7 @@ class CategoryForm extends Component {
     return `
     <form>
       <label  class="form-label">Create category</label>
-      <input type="text" class="form-control" placesholder="Type a category name" required>
+      <input name="title" type="text" class="form-control" placesholder="Type a category name" required>
     </form>
        `;
   }

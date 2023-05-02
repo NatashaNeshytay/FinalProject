@@ -6,6 +6,8 @@ import { databaseService } from "../../../services/DatabaseService";
 import { FIRESTORE_KEYS } from "../../../constants/firestoreKeys";
 import "../../molecules/Pagination";
 import "../../organisms/CardList";
+import "../../molecules/CategoryItems";
+import "../../templates/CatalogControls";
 import "../../molecules/Banner";
 
 class CatalogPage extends Component {
@@ -13,8 +15,10 @@ class CatalogPage extends Component {
     super();
     this.state = {
       products: [],
+      categories: [],
       limit: 12,
       currentPage: 1,
+      filteredProducts: [],
     };
   }
 
@@ -22,7 +26,11 @@ class CatalogPage extends Component {
     const { limit } = this.state;
     const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
+    // const data = this.data.filteredProducts.length
+    //   ? this.state.filteredProducts
+    //   : this.state.products;
     return this.state.products.slice(start, end);
+    // return  this.state.products.map((item) => ({ ...item, description: convertString(item.description) })).slice(start, end);
   }
 
   onChangePaginationPage = (evt) => {
@@ -35,13 +43,18 @@ class CatalogPage extends Component {
     window.scrollTo(0, { behavior: "smooth" });
   };
 
+  cacheProducts = (products) => {
+    const data = products;
+    return data;
+  };
+
   onFilterProductsByCategory = (evt) => {
     const { selectedCategory } = evt.detail;
     this.setState((state) => {
       return {
         ...state,
-        products: PRODUCTS.filter(
-          (item) => item.category.id === selectedCategory.id
+        filteredProducts: this.state.products.filter(
+          (item) => item.category === selectedCategory.id
         ),
         currentPage: 1,
       };
@@ -81,9 +94,30 @@ class CatalogPage extends Component {
     }
   };
 
+  setCategories(categories) {
+    this.setState((state) => {
+      return {
+        ...state,
+        categories,
+      };
+    });
+  }
+
+  getAllCategories = async () => {
+    try {
+      const data = await databaseService.getCollection(
+        FIRESTORE_KEYS.categories
+      );
+      this.setCategories(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   componentDidMount() {
     this.getProducts();
     this.sliceData();
+    this.getAllCategories();
     eventEmmiter.on(
       APP_EVENTS.changePaginationPage,
       this.onChangePaginationPage
@@ -103,16 +137,15 @@ class CatalogPage extends Component {
 
   render() {
     return `
-    <it-slideer></it-slideer>
+    <it-slider></it-slider>
+    <catalog-controls categories='${JSON.stringify(
+      this.state.categories
+    )}'></catalog-controls>
     <div class="container">
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li><a href="#" class="active">All</a></li>
-    					<li><a href="#">Vegetables</a></li>
-    					<li><a href="#">Fruits</a></li>
-    					<li><a href="#">Juice</a></li>
-    					<li><a href="#">Dried</a></li>
+    			
     				</ul>
     			</div>
     		</div>
