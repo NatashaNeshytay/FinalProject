@@ -16,7 +16,7 @@ class CatalogPage extends Component {
     this.state = {
       products: [],
       categories: [],
-      limit: 12,
+      limit: 8,
       currentPage: 1,
     };
   }
