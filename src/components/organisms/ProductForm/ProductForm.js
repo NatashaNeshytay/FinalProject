@@ -5,7 +5,7 @@ import { readerFile } from "../../../utils/readFile";
 
 class ProductForm extends Component {
   static get observedAttributes() {
-    return ['categories'];
+    return ["categories"];
   }
 
   onSubmit = (evt) => {
@@ -53,11 +53,9 @@ class ProductForm extends Component {
     this.removeEventListener("change", this.onChange);
   }
 
-
-
   render() {
     const categories = JSON.parse(this.props.categories);
-    
+
     return `
       <form enctype="multipart/form-data">
         <div class="mb-3">
@@ -72,11 +70,10 @@ class ProductForm extends Component {
               <select class="form-select" aria-label="Default select example" name="category">
               ${categories
                 .map((item) => {
-                  return `<option value='${item.id}'>${item.name}</option>`;
-                 
+                  return `<option value='${item.id}'>${item.title}</option>`;
                 })
-                 
-                .join(' ')}
+
+                .join(" ")}
                 
               </select>
             </label>

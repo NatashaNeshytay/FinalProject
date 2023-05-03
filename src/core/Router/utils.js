@@ -1,13 +1,13 @@
 let paramRe = /^:(.+)/;
 function segmentize(uri) {
-  return uri.replace(/(^\/+|\/+$)/g, '').split('/');
+  return uri.replace(/(^\/+|\/+$)/g, "").split("/");
 }
 
 export function match(routes, uri) {
   let match;
-  const [uriPathname] = uri.split('?');
+  const [uriPathname] = uri.split("?");
   const uriSegments = segmentize(uriPathname);
-  const isRootUri = uriSegments[0] === '/';
+  const isRootUri = uriSegments[0] === "/";
 
   for (let i = 0; i < routes.length; i++) {
     const route = routes[i];
@@ -19,9 +19,12 @@ export function match(routes, uri) {
     for (; index < max; index++) {
       const uriSegment = uriSegments[index];
       const routeSegment = routeSegments[index];
-      const fallback = routeSegment === '*';
+      const fallback = routeSegment === "*";
       if (fallback) {
-        params['*'] = uriSegments.slice(index).map(decodeURIComponent).join('/');
+        params["*"] = uriSegments
+          .slice(index)
+          .map(decodeURIComponent)
+          .join("/");
         break;
       }
       if (uriSegment === undefined) {

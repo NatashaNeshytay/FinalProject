@@ -1,16 +1,16 @@
-@import '../../../scss/mixins.scss';
+@import "../../../scss/mixins.scss";
 
 .fix-line-of-image {
-  @include sliceByLine;
-  min-height: 210px
+   width: 250px;
+   height: 250px;
 }
 
 .fix-line-of-description {
-  @include sliceByLine(2);
-  min-height: 80px;
+   @include sliceByLine(2);
+   min-height: 55px;
 }
 
 .fix-line-of-title {
-  @include sliceByLine(3);
-  min-height: 50px;
+   @include sliceByLine(2);
+   min-height: 48px;
 }

@@ -1,6 +1,6 @@
-import { APP_EVENTS } from '../../constants/appEvents';
-import { eventEmmiter } from '../EventEmmiter';
-import { match } from './utils';
+import { APP_EVENTS } from "../../constants/appEvents";
+import { eventEmmiter } from "../EventEmmiter";
+import { match } from "./utils";
 
 export class Router extends HTMLElement {
   constructor() {
@@ -10,10 +10,10 @@ export class Router extends HTMLElement {
   }
 
   get routes() {
-    return Array.from(this.querySelectorAll('app-route')).map((route) => ({
-      path: route.getAttribute('path'),
-      title: route.getAttribute('title'),
-      component: route.getAttribute('component'),
+    return Array.from(this.querySelectorAll("app-route")).map((route) => ({
+      path: route.getAttribute("path"),
+      title: route.getAttribute("title"),
+      component: route.getAttribute("component"),
     }));
   }
 
@@ -27,7 +27,7 @@ export class Router extends HTMLElement {
 
   setComponentParams(params, view) {
     for (let key in params) {
-      if (key !== '*') view.setAttribute(key, params[key]);
+      if (key !== "*") view.setAttribute(key, params[key]);
     }
   }
 
@@ -41,7 +41,7 @@ export class Router extends HTMLElement {
     const matchedRoute = match(this.routes, url);
     if (matchedRoute !== null) {
       this.activeRoute = matchedRoute;
-      window.history.pushState(null, '', url);
+      window.history.pushState(null, "", url);
       this.update();
     }
   }
@@ -69,16 +69,16 @@ export class Router extends HTMLElement {
   };
 
   connectedCallback() {
-    this.outlet = this.querySelector('app-outlet');
+    this.outlet = this.querySelector("app-outlet");
     this.navigate(window.location.pathname);
-    window.addEventListener('popstate', this.onPopState);
+    window.addEventListener("popstate", this.onPopState);
     eventEmmiter.on(APP_EVENTS.changeRoute, this.onChangeRoute);
   }
 
   disconnectedCallback() {
-    window.removeEventListener('popstate', this.onPopState);
+    window.removeEventListener("popstate", this.onPopState);
     eventEmmiter.off(APP_EVENTS.changeRoute, this.onChangeRoute);
   }
 }
 
-customElements.define('app-router', Router);
+customElements.define("app-router", Router);

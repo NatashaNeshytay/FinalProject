@@ -1,9 +1,10 @@
 import { Component } from "../../../core/Component";
+import "./logo.scss";
 
 class Logo extends Component {
   render() {
     return `
-        <a class="navbar-brand">Vegefoods</a>
+        <img class="logo" src="../../../assets/images/logo.png" alt="logo">
     `;
   }
 }

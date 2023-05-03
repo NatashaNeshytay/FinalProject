@@ -5,7 +5,7 @@ class Footer extends Component {
     return `
     <footer class="ftco-footer ftco-section">
       <div class="container mt-5 text-center">
-        <p>Copyright &copy; All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Colorlib</a></p>
+        <p>&copy; 2023 | Все права защищены <a class="text-decoration-none" href="#" target="_blank">VeggieFOOD</a></p>
       </div>
     </footer>
         `;

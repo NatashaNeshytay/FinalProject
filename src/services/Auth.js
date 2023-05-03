@@ -4,8 +4,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-} from 'firebase/auth';
-import { cloudService } from './CloudService';
+} from "firebase/auth";
+import { cloudService } from "./CloudService";
 
 class AuthService {
   constructor() {
@@ -21,7 +21,7 @@ class AuthService {
         },
         (error) => {
           reject(error);
-        },
+        }
       );
     });
   }

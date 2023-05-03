@@ -1,16 +1,15 @@
 export const APP_EVENTS = {
-    changePaginationPage: 'changePaginationPage',
-    setCategory: 'setCategory',
-    searchProducts: 'searchProducts',
-    storage: 'storage',
-    changeRoute: 'changeRoute',
-    changeTab: 'cange-tab',
-    createCategory: 'createCategory',
-    createProduct: 'createProduct',
-    createBlog: 'createBlog',
-    signUp: 'signUp',
-    signIn: 'signIn',
-   
-    autorizeUser: ' autorizeUser',
-  };
-  
+  changePaginationPage: "changePaginationPage",
+  setCategory: "setCategory",
+  searchProducts: "searchProducts",
+  storage: "storage",
+  changeRoute: "change-route",
+  changeTab: "cange-tab",
+  createCategory: "createCategory",
+  createProduct: "createProduct",
+  createBlog: "createBlog",
+  signUp: "signUp",
+  signIn: "signIn",
+  signOut: "signOut",
+  authorizeUser: "authorizeUser",
+};

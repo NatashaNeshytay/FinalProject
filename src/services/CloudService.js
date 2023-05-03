@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 
-class CloudService {
+export class CloudService {
   constructor() {
     this._config = {
       apiKey: process.env.API_KEY,
@@ -13,5 +13,4 @@ class CloudService {
     this.app = initializeApp(this._config);
   }
 }
-
 export const cloudService = new CloudService();

@@ -105,41 +105,41 @@ class CardPage extends Component {
                     <tr>
                         <th class='pro-id'>id</th>
                         <th class="pro-thumbnail">Картинка</th>
-                        <th class="pro-title">Описание</th>
+                        <th class="pro-title">Наименование</th>
                         <th class="pro-price">Цена</th>
-                        <th class="pro-quantity">Колличество</th>
+                        <th class="pro-quantity">Кол-во</th>
                         <th class="pro-remove">Удалить</th>
                     </tr>
                 </thead>
                 <tbody>
                     ${this.state.products
                       .map((item, index) => {
-                            const price = item.price * item.quantity;
+                        const price = item.price * item.quantity;
                         return `              
                     <tr>
                         <td>${index + 1}</td>
-                        <td class="pro-thumbnail col-3"><img class="img-fluid" src='${
+                        <td class="pro-thumbnail col-3"><img class="img-fluid img-fix" src='${
                           item.image
                         }' alt="Product" /></a></td>
                         <td class="pro-title">${item.title}</td>
                         <td class="pro-price">${price} BYN</td>
 
                         <td class="pro-quantity">
-                        <div class="quantity">
+                        <div class="quantity d-flex align-items-center justify-content-center">
                             <div class="cart-plus-minus">
-                                <div class="btn minus" data-id="${
+                                <div class="btn minus border border-primary" data-id="${
                                   item.id
                                 }">-</div>
-                                <input class="cart-plus-minus-box" value='${
-                                  item.quantity
-                                }' type="text">
-                                <div class="btn plus" data-id="${
+                                <span class="cart-plus-minus-box m-3">
+                                ${item.quantity}
+                                </span>
+                                <div class="btn plus border border-primary" data-id="${
                                   item.id
                                 }">+</div>
                             </div>
                         </div>
                         <td>
-                            <button class='btn btn-secondary minus' data-id="${
+                            <button class='btn btn-primary minus' data-id="${
                               item.id
                             }">Удалить</button>
                         </td>
@@ -150,11 +150,13 @@ class CardPage extends Component {
                       .join(" ")}
               <tfooter>
               <tr>
-              <td colspan="3"><b>Итого:</b></td>
-              <td colspan="3">${new Intl.NumberFormat("ru-Ru", {
-                style: "currency",
-                currency: "BYN",
-              }).format(this.allSum(this.state.products))}</td>
+              <td colspan="6" class="text-end pe-5"><b class="me-4">Итого:</b> ${new Intl.NumberFormat(
+                "ru-Ru",
+                {
+                  style: "currency",
+                  currency: "BYN",
+                }
+              ).format(this.allSum(this.state.products))}</td>
               </tr>
               </tfooter>
             </table>

@@ -1,35 +1,34 @@
-import { APP_ROUTES } from './appRoutes';
+import { APP_ROUTES } from "./appRoutes";
 
 export const appPages = [
-  
   {
     href: APP_ROUTES.catalog,
-    label: 'Каталог',
+    label: "Каталог",
   },
 
   {
     href: APP_ROUTES.blog,
-    label: 'Блог',
+    label: "Блог",
   },
-  
+
   {
     href: APP_ROUTES.card,
-    label: 'Корзина',
+    label: "Корзина",
   },
   {
     href: APP_ROUTES.admin,
-    label: 'Admin',
+    label: "Admin",
   },
   {
     href: APP_ROUTES.signUp,
-    label: 'SignUp',
+    label: "Регистрация",
   },
   {
     href: APP_ROUTES.signIn,
-    label: 'SignIn',
+    label: "Вход",
   },
   {
     href: APP_ROUTES.signOut,
-    label: 'SignOut',
+    label: "Выход",
   },
 ];

@@ -9,18 +9,18 @@ import "./components/pages/BlogPage";
 import "./components/pages/AdminPage";
 import "./components/pages/SignUpPage";
 import "./components/pages/SignInPage";
-import './components/pages/SignOutPage';
+import "./components/pages/SignOutPage";
 import "./components/pages/CardPage";
 import "./components/pages/ErrorPage";
-import { authService } from './services/Auth';
-import { eventEmmiter } from './core/EventEmmiter';
-import { APP_EVENTS } from './constants/appEvents';
+import { authService } from "./services/Auth";
+import { eventEmmiter } from "./core/EventEmmiter";
+import { APP_EVENTS } from "./constants/appEvents";
+import { storageService } from "./services/StorageService";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      count: 0,
       isLoading: false,
       user: null,
     };
@@ -49,6 +49,7 @@ class App extends Component {
     try {
       const user = await authService.authorizeUser();
       this.setUser(user);
+      storageService.setItem("user", user);
     } catch (error) {
       console.error(error);
     } finally {
@@ -73,7 +74,7 @@ class App extends Component {
     return `
     <it-preloader is-loading="${this.state.isLoading}">
     <div class="main-layout"> 
-    <it-navigation></it-navigation>
+    <it-navigation user='${JSON.stringify(this.state.user)}'></it-navigation>
       <main>
         <app-router>
        

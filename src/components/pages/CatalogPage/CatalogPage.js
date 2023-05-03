@@ -1,9 +1,9 @@
 import { Component } from "../../../core/Component";
-// import { PRODUCTS } from '../../../constants/products';
 import { eventEmmiter } from "../../../core/EventEmmiter";
 import { APP_EVENTS } from "../../../constants/appEvents";
 import { databaseService } from "../../../services/DatabaseService";
 import { FIRESTORE_KEYS } from "../../../constants/firestoreKeys";
+import { convertString } from "../../../utils/convertString";
 import "../../molecules/Pagination";
 import "../../organisms/CardList";
 import "../../molecules/CategoryItems";
@@ -18,8 +18,11 @@ class CatalogPage extends Component {
       categories: [],
       limit: 12,
       currentPage: 1,
-    
     };
+  }
+
+  static get observedAttributes() {
+    return ["products", "categories"];
   }
 
   sliceData(currentPage = 1) {
@@ -27,26 +30,13 @@ class CatalogPage extends Component {
     const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
     const data = this.state.products;
-    console.log(data);
-    // const data = this.data.filteredProducts.length
-    //   ? this.state.filteredProducts
-    //   : this.state.products;
-    return data.slice(start, end);
-    // return  this.state.products.map((item) => ({ ...item, description: convertString(item.description) })).slice(start, end);
+    return data
+      .map((item) => ({
+        ...item,
+        description: convertString(item.description),
+      }))
+      .slice(start, end);
   }
-
-  // sliceData(currentPage = 1) {
-  //   const { limit } = this.state;
-
-  //   const start = (currentPage - 1) * limit;
-  //   const end = currentPage * limit;
-
-  //   const data = this.state.products;
-
-  //   return data
-  //     .map((item) => ({ ...item, description: convertString(item.description) }))
-  //     .slice(start, end);
-  // }
 
   onChangePaginationPage = (evt) => {
     this.setState((state) => {
@@ -58,55 +48,15 @@ class CatalogPage extends Component {
     window.scrollTo(0, { behavior: "smooth" });
   };
 
-  cacheProducts = (products) => {
-    const data = products;
-    return data;
-  };
-
-  // onFilterProductsByCategory = async (evt) => {
-  //   const { selectedCategory } = evt.detail;
-  //   const products = await databaseService.getCollection(
-  //     FIRESTORE_KEYS.products
-  //   );
-  //   const filtered = selectedCategory.id === 'Все продукты'
-  //         ? products
-  //         :products.filter(
-  //     (item) => item.category === selectedCategory.id
-  //   );
-  //   this.setState((state) => {
-  //     return {
-  //       ...state,
-  //       products: filtered,
-  //       currentPage: 1,
-  //     };
-  //   });
-  // };
-
-  // onFilterProductsByCategory = async (evt) => {
-  //   const { selectedCategory } = evt.detail;
-  //   const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
-  //   const filtered =
-  //     selectedCategory.name === 'All Products'
-  //       ? products
-  //       : products.filter((item) => item.category === selectedCategory.id);
-  //   this.setState((state) => {
-  //     return {
-  //       ...state,
-  //       products: filtered,
-  //       currentPage: 1,
-  //     };
-  //   });
-  // };
-
-  onFilterProductsByCategory = (evt) => {
+  onFilterProductsByCategory = async (evt) => {
     const { selectedCategory } = evt.detail;
-
+    const products = await databaseService.getCollection(
+      FIRESTORE_KEYS.products
+    );
     this.setState((state) => {
       return {
         ...state,
-        products: this.state.products.filter(
-          (item) => item.category === selectedCategory.id
-        ),
+        products: products.filter((item) => item.title === selectedCategory.id),
         currentPage: 1,
       };
     });
@@ -117,11 +67,10 @@ class CatalogPage extends Component {
     const products = await databaseService.getCollection(
       FIRESTORE_KEYS.products
     );
-
     this.setState((state) => {
       return {
         ...state,
-        products: this.state.products.filter((item) => {
+        products: products.filter((item) => {
           return item.title.toLowerCase().includes(data.search.toLowerCase());
         }),
         currentPage: 1,
@@ -159,7 +108,6 @@ class CatalogPage extends Component {
   }
 
   getAllCategories = async () => {
-    
     try {
       const data = await databaseService.getCollection(
         FIRESTORE_KEYS.categories
@@ -167,7 +115,7 @@ class CatalogPage extends Component {
       this.setCategories(data);
     } catch (error) {
       console.error(error);
-    } 
+    }
   };
 
   componentDidMount() {

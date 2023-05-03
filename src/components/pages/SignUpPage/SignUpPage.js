@@ -1,17 +1,18 @@
-import { APP_EVENTS } from '../../../constants/appEvents';
-import { APP_ROUTES } from '../../../constants/appRoutes';
-import { Component } from '../../../core/Component';
-import { eventEmmiter } from '../../../core/EventEmmiter';
-import { authService } from '../../../services/Auth';
-import '../../molecules/Preloader';
-import '../../organisms/RegisterForm';
+import { APP_EVENTS } from "../../../constants/appEvents";
+import { APP_ROUTES } from "../../../constants/appRoutes";
+import { Component } from "../../../core/Component";
+import { eventEmmiter } from "../../../core/EventEmmiter";
+import { authService } from "../../../services/Auth";
+import "../../molecules/Preloader";
+import "../../organisms/RegisterForm";
+import { storageService } from "../../../services/StorageService";
 
 class SignUpPage extends Component {
   constructor() {
     super();
     this.state = {
       isLoading: false,
-      errorMessage: '',
+      errorMessage: "",
     };
   }
 
@@ -38,8 +39,9 @@ class SignUpPage extends Component {
     this.setIsLoading(true);
     try {
       const user = await authService.signUp(data.email, data.password);
+      storageService.setItem("user", user);
       eventEmmiter.emit(APP_EVENTS.authorizeUser, { user });
-      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.catalog });
+      eventEmmiter.emit(APP_EVENTS.changeRoute, { target: APP_ROUTES.home });
     } catch (error) {
       this.setError(error.message);
     } finally {
@@ -58,20 +60,20 @@ class SignUpPage extends Component {
     const message = this.state.errorMessage;
     return `
     <it-preloader is-loading="${this.state.isLoading}">
-        <div class="container mt-5">
-            <h1 class="text-center mt-5">Регистрация / SignUp</h1>
-            <div class="row justify-content-center mt-5">
-                <div class="col-6">
-                    <div class="border p-4">
-                      ${message ? `<div class="invalid-feedback d-block">${message}</div>` : ''}
-                      <register-form></register-form>
-                    </div>
-                </div>
-            </div>    
+    <div class="container">
+        <h1 class="text-center mt-1">Регистрация</h1>
+        <div class="row justify-content-center mt-5">
+          <div class="col-6">
+             <div class="border p-5 border-primary border-2 rounded">
+                <div class="invalid-feedback d-block">${message}</div>
+                <register-form></register-form>
+             </div>
+          </div>
         </div>
-    </it-preloader>    
+    </div>
+  </it-preloader>    
     `;
   }
 }
 
-customElements.define('sign-up-page', SignUpPage);
+customElements.define("sign-up-page", SignUpPage);

@@ -1,6 +1,6 @@
-import { APP_EVENTS } from '../../../constants/appEvents';
-import { Component } from '../../../core/Component';
-import { eventEmmiter } from '../../../core/EventEmmiter';
+import { APP_EVENTS } from "../../../constants/appEvents";
+import { Component } from "../../../core/Component";
+import { eventEmmiter } from "../../../core/EventEmmiter";
 
 class SearchForm extends Component {
   onSearch = (evt) => {
@@ -17,21 +17,21 @@ class SearchForm extends Component {
   };
 
   componentDidMount() {
-    this.addEventListener('submit', this.onSearch);
+    this.addEventListener("submit", this.onSearch);
   }
 
   componentWillUnmount() {
-    this.removeEventListener('submit', this.onSearch);
+    this.removeEventListener("submit", this.onSearch);
   }
 
   render() {
     return `
         <form class="d-flex" role="search">
-            <input name='search' class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input name='search' class="form-control me-2" type="search" placeholder="Search" aria-label="Поиск...">
+            <button class="btn btn-outline-primary" type="submit">Поиск</button>
         </form>
         `;
   }
 }
 
-customElements.define('search-form', SearchForm);
+customElements.define("search-form", SearchForm);

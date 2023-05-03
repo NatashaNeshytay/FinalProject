@@ -17,7 +17,6 @@ class AdminPage extends Component {
     super();
     this.state = {
       activeTab: menuItems[0],
-      categories: [],
       isLoading: false,
     };
   }
@@ -27,7 +26,6 @@ class AdminPage extends Component {
       return {
         ...state,
         activeTab,
-        isLoading: false,
       };
     });
   };
@@ -109,7 +107,7 @@ class AdminPage extends Component {
 
   render() {
     return `
-<it-prelouder is-loading="${this.state.isLoading}">
+      <it-prelouder is-loading="${this.state.isLoading}">
          <div class="container">
             <div class="mt-5">
                <it-tabs
@@ -121,7 +119,7 @@ class AdminPage extends Component {
                </div>
             </div>
          </div>
-         <it-prelouder>
+      <it-prelouder>
       `;
   }
 }
