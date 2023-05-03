@@ -5,7 +5,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
-
 import { cloudService } from './CloudService';
 
 class AuthService {

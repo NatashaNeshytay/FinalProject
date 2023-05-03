@@ -11,6 +11,7 @@ class CatalogControls extends Component {
 
   render() {
     const categories = this.props.categories;
+    console.log(categories)
 
     return `
       <header>

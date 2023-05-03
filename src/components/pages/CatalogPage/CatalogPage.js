@@ -18,7 +18,7 @@ class CatalogPage extends Component {
       categories: [],
       limit: 12,
       currentPage: 1,
-      filteredProducts: [],
+    
     };
   }
 
@@ -26,12 +26,27 @@ class CatalogPage extends Component {
     const { limit } = this.state;
     const start = (currentPage - 1) * limit;
     const end = currentPage * limit;
+    const data = this.state.products;
+    console.log(data);
     // const data = this.data.filteredProducts.length
     //   ? this.state.filteredProducts
     //   : this.state.products;
-    return this.state.products.slice(start, end);
+    return data.slice(start, end);
     // return  this.state.products.map((item) => ({ ...item, description: convertString(item.description) })).slice(start, end);
   }
+
+  // sliceData(currentPage = 1) {
+  //   const { limit } = this.state;
+
+  //   const start = (currentPage - 1) * limit;
+  //   const end = currentPage * limit;
+
+  //   const data = this.state.products;
+
+  //   return data
+  //     .map((item) => ({ ...item, description: convertString(item.description) }))
+  //     .slice(start, end);
+  // }
 
   onChangePaginationPage = (evt) => {
     this.setState((state) => {
@@ -48,12 +63,48 @@ class CatalogPage extends Component {
     return data;
   };
 
+  // onFilterProductsByCategory = async (evt) => {
+  //   const { selectedCategory } = evt.detail;
+  //   const products = await databaseService.getCollection(
+  //     FIRESTORE_KEYS.products
+  //   );
+  //   const filtered = selectedCategory.id === 'Все продукты'
+  //         ? products
+  //         :products.filter(
+  //     (item) => item.category === selectedCategory.id
+  //   );
+  //   this.setState((state) => {
+  //     return {
+  //       ...state,
+  //       products: filtered,
+  //       currentPage: 1,
+  //     };
+  //   });
+  // };
+
+  // onFilterProductsByCategory = async (evt) => {
+  //   const { selectedCategory } = evt.detail;
+  //   const products = await databaseService.getCollection(FIRESTORE_KEYS.products);
+  //   const filtered =
+  //     selectedCategory.name === 'All Products'
+  //       ? products
+  //       : products.filter((item) => item.category === selectedCategory.id);
+  //   this.setState((state) => {
+  //     return {
+  //       ...state,
+  //       products: filtered,
+  //       currentPage: 1,
+  //     };
+  //   });
+  // };
+
   onFilterProductsByCategory = (evt) => {
     const { selectedCategory } = evt.detail;
+
     this.setState((state) => {
       return {
         ...state,
-        filteredProducts: this.state.products.filter(
+        products: this.state.products.filter(
           (item) => item.category === selectedCategory.id
         ),
         currentPage: 1,
@@ -61,8 +112,12 @@ class CatalogPage extends Component {
     });
   };
 
-  onSearch = (evt) => {
+  onSearch = async (evt) => {
     const { data } = evt.detail;
+    const products = await databaseService.getCollection(
+      FIRESTORE_KEYS.products
+    );
+
     this.setState((state) => {
       return {
         ...state,
@@ -104,6 +159,7 @@ class CatalogPage extends Component {
   }
 
   getAllCategories = async () => {
+    
     try {
       const data = await databaseService.getCollection(
         FIRESTORE_KEYS.categories
@@ -111,7 +167,7 @@ class CatalogPage extends Component {
       this.setCategories(data);
     } catch (error) {
       console.error(error);
-    }
+    } 
   };
 
   componentDidMount() {

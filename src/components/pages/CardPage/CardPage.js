@@ -89,7 +89,7 @@ class CardPage extends Component {
     this.removeEventListener("click", this.onAddIteem);
   }
 
-  sum(products) {
+  allSum(products) {
     return products.reduce((acc, item) => {
       return (acc += item.quantity ? item.price * item.quantity : item.price);
     }, 0);
@@ -114,6 +114,7 @@ class CardPage extends Component {
                 <tbody>
                     ${this.state.products
                       .map((item, index) => {
+                            const price = item.price * item.quantity;
                         return `              
                     <tr>
                         <td>${index + 1}</td>
@@ -121,7 +122,8 @@ class CardPage extends Component {
                           item.image
                         }' alt="Product" /></a></td>
                         <td class="pro-title">${item.title}</td>
-                        <td class="pro-price">${item.price} BYN</td>
+                        <td class="pro-price">${price} BYN</td>
+
                         <td class="pro-quantity">
                         <div class="quantity">
                             <div class="cart-plus-minus">
@@ -152,7 +154,7 @@ class CardPage extends Component {
               <td colspan="3">${new Intl.NumberFormat("ru-Ru", {
                 style: "currency",
                 currency: "BYN",
-              }).format(this.sum(this.state.products))}</td>
+              }).format(this.allSum(this.state.products))}</td>
               </tr>
               </tfooter>
             </table>

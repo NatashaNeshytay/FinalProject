@@ -1,15 +1,14 @@
-import { APP_EVENTS } from '../../../constants/appEvents';
-import { appPages } from '../../../constants/appPages';
-import { APP_ROUTES } from '../../../constants/appRoutes';
-import { APP_STORAGE_KEYS } from '../../../constants/appStorageKeys';
-import { Component } from '../../../core/Component';
-import { eventEmmiter } from '../../../core/EventEmmiter';
-import { storageService } from '../../../services/StorageService';
-import '../../molecules/MenuItems';
-import '../../../core/Router/Link';
-import './navigation.scss';
+import { APP_EVENTS } from "../../../constants/appEvents";
+import { appPages } from "../../../constants/appPages";
+import { APP_ROUTES } from "../../../constants/appRoutes";
+import { APP_STORAGE_KEYS } from "../../../constants/appStorageKeys";
+import { Component } from "../../../core/Component";
+import { eventEmmiter } from "../../../core/EventEmmiter";
+import { storageService } from "../../../services/StorageService";
+import "../../molecules/MenuItems";
+import "../../../core/Router/Link";
+import "./navigation.scss";
 import "../../atoms/Logo";
-
 
 class Navigation extends Component {
   constructor() {
@@ -46,7 +45,6 @@ class Navigation extends Component {
       .reduce((acc, item) => acc + item.quantity, 0);
   };
 
-
   onStorage = (evt) => {
     const count = this.countProducts(evt.detail.data);
     this.setProductsCount(count);
@@ -60,6 +58,32 @@ class Navigation extends Component {
       };
     });
   }
+
+  getItems() {
+    const user = JSON.parse(this.props.user);
+    if (user) {
+      if (user.email === ADMIN) {
+        return appPages.filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every(
+            (item) => item !== menuItem.href
+          );
+        });
+      } else {
+        return appPages.filter((menuItem) => {
+          return [APP_ROUTES.signUp, APP_ROUTES.signIn].every(
+            (item) => item !== menuItem.href
+          );
+        });
+      }
+    } else {
+      return appPages.filter((menuItem) => {
+        return [APP_ROUTES.signOut, APP_ROUTES.admin].every(
+          (item) => item !== menuItem.href
+        );
+      });
+    }
+  }
+
   componentDidMount() {
     eventEmmiter.on(APP_EVENTS.autorizeUser, this.setUser);
     eventEmmiter.on(APP_EVENTS.storage, this.onStorage);

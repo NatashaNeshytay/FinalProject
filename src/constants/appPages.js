@@ -22,14 +22,14 @@ export const appPages = [
   },
   {
     href: APP_ROUTES.signUp,
-    label: 'Sign Up',
+    label: 'SignUp',
   },
   {
     href: APP_ROUTES.signIn,
-    label: 'Sign In',
+    label: 'SignIn',
   },
   {
     href: APP_ROUTES.signOut,
-    label: 'Sign Out',
+    label: 'SignOut',
   },
 ];

@@ -27,11 +27,22 @@ class CategoryItems extends Component {
     if (evt.target.closest('.nav-link')) {
       const id = evt.target.dataset.id;
       const items = JSON.parse(this.props.items);
-      const selectedCategory = items.find((item) => item.id === Number(id));
+      const selectedCategory = items.find((item) => item.id === id);
       this.setActiveCategory(selectedCategory);
       eventEmmiter.emit(APP_EVENTS.setCategory, { selectedCategory });
     }
   };
+
+  // setCategory = (evt) => {
+  //   evt.preventDefault();
+  //   if (evt.target.closest('.category-link')) {
+  //     const id = evt.target.dataset.id;
+  //     const items = JSON.parse(this.props.items);
+  //     const selectedCategory = items.find((item) => item.id === id);
+  //     this.setActiveCategory(selectedCategory);
+  //     eventEmmiter.emit(APP_EVENTS.setCategory, { selectedCategory });
+  //   }
+  // };
 
   componentDidMount() {
     const items = JSON.parse(this.props.items);
@@ -47,10 +58,12 @@ class CategoryItems extends Component {
     const items = JSON.parse(this.props.items);
     const { activeItem } = this.state;
 
+    console.log(items)
+
     return `
         <ul class="navbar-nav">
             ${items
-              .slice(0, 5)
+              
               .map((item) => {
                 const isActive = activeItem?.id === item.id;
                 return `
