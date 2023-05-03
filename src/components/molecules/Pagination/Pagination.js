@@ -72,4 +72,4 @@ class Pagination extends Component {
   }
 }
 
-customElements.define("it-pagination", Pagination);
+customElements.define("vegefood-pagination", Pagination);

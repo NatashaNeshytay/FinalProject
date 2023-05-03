@@ -56,7 +56,7 @@ class CatalogPage extends Component {
     this.setState((state) => {
       return {
         ...state,
-        products: products.filter((item) => item.title === selectedCategory.id),
+        products: products.filter((item) => item.category === selectedCategory.id),
         currentPage: 1,
       };
     });
@@ -162,11 +162,11 @@ class CatalogPage extends Component {
           this.sliceData(this.state.currentPage)
         )}'></card-list>
       <div class='mt-5'>
-        <it-pagination 
+        <vegefood-pagination 
           total="${this.state.products.length}"
           limit="${this.state.limit}"
           current="${this.state.currentPage}"
-        ></it-pagination>
+        ></vegefood-pagination>
       </div>
       </div>
     </div>
