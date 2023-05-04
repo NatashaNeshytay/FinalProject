@@ -5,7 +5,6 @@ import { match } from "./utils";
 export class Router extends HTMLElement {
   constructor() {
     super();
-
     this.activeRoute = {};
   }
 
@@ -50,11 +49,9 @@ export class Router extends HTMLElement {
     const { component, title, params = {} } = this.activeRoute;
     const view = this.createComponent(component);
     this.setDocumentTitle(title);
-
     if (component) {
       this.clearOutlet();
       this.setComponentParams(params, view);
-
       this.outlet.appendChild(view);
     }
   }

@@ -29,6 +29,7 @@ class SignInForm extends Component {
   componentDidMount() {
     this.addEventListener("submit", this.onSubmit);
   }
+
   componentWillUnmount() {
     this.removeEventListener("submit", this.onSubmit);
   }
@@ -36,19 +37,19 @@ class SignInForm extends Component {
   render() {
     return `
     <form>
-    <div class="mb-3">
-      <label class="form-label w-100">
+      <div class="mb-3">
+        <label class="form-label w-100">
         <p>Почта<p>
         <input name="email" type="email" class="form-control bg-transparent border-primary">
-      </label>
-    </div>
-    <div class="mb-3">
-      <label class="form-label w-100">
+        </label>
+      </div>
+      <div class="mb-3">
+        <label class="form-label w-100">
         <p>Пароль<p>
         <input name="password" type="password" class="form-control bg-transparent border-primary" required>
-      </label>
-    </div>
-    <div class="mt-2 d-flex justify-content-between">
+        </label>
+      </div>
+      <div class="mt-2 d-flex justify-content-between">
     <button type="submit" class="btn bg-primary btn-submit text-light">Войти</button>
   </form>
     `;

@@ -1,6 +1,6 @@
-import { Component } from '../../../core/Component';
-import { APP_EVENTS } from '../../../constants/appEvents';
-import { eventEmmiter } from '../../../core/EventEmmiter';
+import { Component } from "../../../core/Component";
+import { APP_EVENTS } from "../../../constants/appEvents";
+import { eventEmmiter } from "../../../core/EventEmmiter";
 
 class CategoryForm extends Component {
   onSubmit = (evt) => {
@@ -10,17 +10,16 @@ class CategoryForm extends Component {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-
     eventEmmiter.emit(APP_EVENTS.createCategory, { data });
     evt.target.reset();
   };
 
   componentDidMount() {
-    this.addEventListener('submit', this.onSubmit);
+    this.addEventListener("submit", this.onSubmit);
   }
 
   componentWillUnmount() {
-    this.removeEventListener('submit', this.onSubmit);
+    this.removeEventListener("submit", this.onSubmit);
   }
 
   render() {
@@ -33,4 +32,4 @@ class CategoryForm extends Component {
   }
 }
 
-customElements.define('category-form', CategoryForm);
+customElements.define("category-form", CategoryForm);

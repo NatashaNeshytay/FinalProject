@@ -39,7 +39,6 @@ class Pagination extends Component {
   render() {
     const { total, limit, current } = this.props;
     const count = new Array(Math.ceil(total / limit)).fill(null);
-
     const isFirst = Number(current) === 1;
     const isLast = Number(current) === count.length;
 

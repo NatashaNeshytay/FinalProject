@@ -1,4 +1,4 @@
-import { Component } from '../../../core/Component';
+import { Component } from "../../../core/Component";
 
 class Preloader extends Component {
   constructor() {
@@ -7,7 +7,7 @@ class Preloader extends Component {
   }
 
   static get observedAttributes() {
-    return ['is-loading'];
+    return ["is-loading"];
   }
 
   render() {
@@ -46,13 +46,13 @@ class Preloader extends Component {
     </style>
     <div>
         ${
-          JSON.parse(this.props['is-loading'])
+          JSON.parse(this.props["is-loading"])
             ? `
                 <div class="preloader">
                     <div class="spinner"></div>
                 </div>
             `
-            : ''
+            : ""
         }
         <slot></slot>
     </div>    
@@ -60,4 +60,4 @@ class Preloader extends Component {
   }
 }
 
-customElements.define('it-preloader', Preloader);
+customElements.define("it-preloader", Preloader);

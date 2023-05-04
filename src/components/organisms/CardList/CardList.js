@@ -1,9 +1,9 @@
-import { Component } from '../../../core/Component';
-import '../../molecules/Card';
+import { Component } from "../../../core/Component";
+import "../../molecules/Card";
 
 class CardList extends Component {
   static get observedAttributes() {
-    return ['products'];
+    return ["products"];
   }
 
   render() {
@@ -25,10 +25,10 @@ class CardList extends Component {
                 </div>
                 `;
               })
-              .join(' ')}
+              .join(" ")}
         </div>
         `;
   }
 }
 
-customElements.define('card-list', CardList);
+customElements.define("card-list", CardList);

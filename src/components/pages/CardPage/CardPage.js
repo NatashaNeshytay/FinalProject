@@ -97,59 +97,57 @@ class CardPage extends Component {
 
   render() {
     return `
-        <h1>CardPage</h1>
-          <div class="container mt-5">
-            <div class="cart-table table-responsive">
-                <table class="table table-bordered text-center">
-                <thead class="table-info">
-                    <tr>
-                        <th class='pro-id'>id</th>
-                        <th class="pro-thumbnail">Картинка</th>
-                        <th class="pro-title">Наименование</th>
-                        <th class="pro-price">Цена</th>
-                        <th class="pro-quantity">Кол-во</th>
-                        <th class="pro-remove">Удалить</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <div class="container mt-5">
+      <div class="cart-table table-responsive">
+        <table class="table table-bordered text-center">
+          <thead class="table-info">
+            <tr>
+              <th class='pro-id'>id</th>
+              <th class="pro-thumbnail">Картинка</th>
+              <th class="pro-title">Наименование</th>
+              <th class="pro-price">Цена</th>
+              <th class="pro-quantity">Кол-во</th>
+              <th class="pro-remove">Удалить</th>
+            </tr>
+          </thead>
+          <tbody>
                     ${this.state.products
                       .map((item, index) => {
                         const price = item.price * item.quantity;
                         return `              
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td class="pro-thumbnail col-3"><img class="img-fluid img-fix" src='${
-                          item.image
-                        }' alt="Product" /></a></td>
-                        <td class="pro-title">${item.title}</td>
-                        <td class="pro-price">${price} BYN</td>
-
-                        <td class="pro-quantity">
-                        <div class="quantity d-flex align-items-center justify-content-center">
-                            <div class="cart-plus-minus">
-                                <div class="btn minus border border-primary" data-id="${
-                                  item.id
-                                }">-</div>
-                                <span class="cart-plus-minus-box m-3">
+            <tr>
+              <td>${index + 1}</td>
+              <td class="pro-thumbnail col-3"><img class="img-fluid img-fix" src='${
+                item.image
+              }' alt="Product" /></a></td>
+              <td class="pro-title">${item.title}</td>
+              <td class="pro-price">${price} BYN</td>
+              <td class="pro-quantity">
+          <div class="quantity d-flex align-items-center justify-content-center">
+            <div class="cart-plus-minus">
+              <div class="btn minus border border-primary" data-id="${
+                item.id
+              }">-</div>
+                <span class="cart-plus-minus-box m-3">
                                 ${item.quantity}
                                 </span>
-                                <div class="btn plus border border-primary" data-id="${
-                                  item.id
-                                }">+</div>
-                            </div>
-                        </div>
-                        <td>
-                            <button class='btn btn-primary minus' data-id="${
-                              item.id
-                            }">Удалить</button>
-                        </td>
-                     </tr>
-                </tbody> 
+              <div class="btn plus border border-primary" data-id="${
+                item.id
+              }">+</div>
+            </div>
+          </div>
+              <td>
+                <button class='btn btn-primary minus' data-id="${
+                  item.id
+                }">Удалить</button>
+              </td>
+            </tr>
+          </tbody> 
                   `;
                       })
                       .join(" ")}
-              <tfooter>
-              <tr>
+          <tfooter>
+            <tr>
               <td colspan="6" class="text-end pe-5"><b class="me-4">Итого:</b> ${new Intl.NumberFormat(
                 "ru-Ru",
                 {
@@ -157,12 +155,11 @@ class CardPage extends Component {
                   currency: "BYN",
                 }
               ).format(this.allSum(this.state.products))}</td>
-              </tr>
-              </tfooter>
-            </table>
-        </div>
-    </div>
-        
+            </tr>
+          </tfooter>
+        </table>
+      </div>
+    </div>    
         `;
   }
 }

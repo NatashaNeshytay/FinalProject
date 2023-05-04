@@ -10,7 +10,6 @@ class SearchForm extends Component {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-
     if (data.search) {
       eventEmmiter.emit(APP_EVENTS.searchProducts, { data });
     }

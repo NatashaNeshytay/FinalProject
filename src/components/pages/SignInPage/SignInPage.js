@@ -1,5 +1,4 @@
 import { Component } from "../../../core/Component";
-
 import "../../organisms/SignInForm";
 import "../../molecules/Preloader";
 import { eventEmmiter } from "../../../core/EventEmmiter";

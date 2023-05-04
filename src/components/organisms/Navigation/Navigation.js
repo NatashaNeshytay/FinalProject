@@ -123,7 +123,6 @@ class Navigation extends Component {
 
   render() {
     return `  
-
       <nav class="navbar navbar-expand-lg nav-justified bg-body-tertiary" style="background-color: #e3f2fd;">
         <div class="container">
           <vegefoods-logo></vegefoods-logo>
@@ -148,7 +147,6 @@ class Navigation extends Component {
           </div>
         </div>
       </nav>
-   
 `;
   }
 }

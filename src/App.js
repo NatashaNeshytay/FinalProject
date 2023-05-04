@@ -73,64 +73,64 @@ class App extends Component {
   render() {
     return `
     <it-preloader is-loading="${this.state.isLoading}">
-    <div class="main-layout"> 
-    <it-navigation user='${JSON.stringify(this.state.user)}'></it-navigation>
-      <main>
-        <app-router>
-       
-          <app-route 
-            path="${routes.catalog.href}" 
-            title="Catalog" 
-            component="${routes.catalog.component}">
-          </app-route>
-
-          <app-route 
-            path="${routes.blog.href}" 
-            title="Blog" 
-            component="${routes.blog.component}">
-          </app-route>
-
-          <app-route 
-            path="${routes.card.href}" 
-            title="Card" 
-            component="${routes.card.component}">
-          </app-route>
-
-          <app-route 
-            path="${routes.admin.href}" 
-            title="Admin" 
-            component="${routes.admin.component}">
-          </app-route>
-
-          <app-route 
-            path="${routes.signUp.href}" 
-            title="Sign Up" 
-            component="${routes.signUp.component}">
-          </app-route>
-
-          <app-route 
-            path="${routes.signIn.href}" 
-            title="Sign In" 
-            component="${routes.signIn.component}">
-          </app-route>
-
-          <app-route 
-          path="${routes.signOut.href}" 
-          title="Sign out" 
-          component="${routes.signOut.component}">
-        </app-route>
-
-          <app-route 
-            path="${routes.error.href}" 
-            title="Error" 
-            component="${routes.error.component}">
-          </app-route>
+      <div class="main-layout"> 
+        <it-navigation user='${JSON.stringify(this.state.user)}'></it-navigation>
+          <main>
+            <app-router>
           
-          <app-outlet></app-outlet>
-        </app-router>
-        </main>
-      <vegefoods-footer></vegefoods-footer>
-      </div>
+              <app-route 
+                path="${routes.catalog.href}" 
+                title="Catalog" 
+                component="${routes.catalog.component}">
+              </app-route>
+
+              <app-route 
+                path="${routes.blog.href}" 
+                title="Blog" 
+                component="${routes.blog.component}">
+              </app-route>
+
+              <app-route 
+                path="${routes.card.href}" 
+                title="Card" 
+                component="${routes.card.component}">
+              </app-route>
+
+              <app-route 
+                path="${routes.admin.href}" 
+                title="Admin" 
+                component="${routes.admin.component}">
+              </app-route>
+
+              <app-route 
+                path="${routes.signUp.href}" 
+                title="Sign Up" 
+                component="${routes.signUp.component}">
+              </app-route>
+
+              <app-route 
+                path="${routes.signIn.href}" 
+                title="Sign In" 
+                component="${routes.signIn.component}">
+              </app-route>
+
+              <app-route 
+              path="${routes.signOut.href}" 
+              title="Sign out" 
+              component="${routes.signOut.component}">
+            </app-route>
+
+              <app-route 
+                path="${routes.error.href}" 
+                title="Error" 
+                component="${routes.error.component}">
+              </app-route>
+              
+              <app-outlet></app-outlet>
+            </app-router>
+            </main>
+          <vegefoods-footer></vegefoods-footer>
+        </div>
       </it-preloader>
     `;
   }

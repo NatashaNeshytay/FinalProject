@@ -22,7 +22,6 @@ export class Component extends HTMLElement {
     } else {
       this.innerHTML = this.render();
     }
-
     this.componentDidMount();
   }
 

@@ -4,6 +4,5 @@ export const getFormData = (form) => {
   formData.forEach((value, key) => {
     values[key] = value;
   });
-
   return values;
 };

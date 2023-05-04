@@ -16,7 +16,6 @@ class ProductForm extends Component {
     formData.forEach((value, key) => {
       data[key] = value;
     });
-
     const isValid = Object.keys(data).every((key) => data[key] !== "");
     if (isValid) {
       eventEmmiter.emit(APP_EVENTS.createProduct, { data });
@@ -72,9 +71,7 @@ class ProductForm extends Component {
                 .map((item) => {
                   return `<option value='${item.id}'>${item.title}</option>`;
                 })
-
                 .join(" ")}
-                
               </select>
             </label>
         </div>
