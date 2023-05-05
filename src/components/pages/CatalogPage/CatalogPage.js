@@ -140,31 +140,31 @@ class CatalogPage extends Component {
 
   render() {
     return `
-       <catalog-controls categories='${JSON.stringify(
+      <catalog-controls categories='${JSON.stringify(
       this.state.categories
     )}'></catalog-controls>
-    <div class="container">
-    	<div class="row justify-content-center">
-    		<div class="col-md-10 mb-5 text-center">
-    			<ul class="product-category"></ul>
-    		</div>
-    	</div>  
-      <div class="container mt-5 pt-5 border-top">
-        <div class="row">
-          <div class='col-sm-12'>
-            <card-list products='${JSON.stringify(
-          this.sliceData(this.state.currentPage)
-        )}'></card-list>
-        <div class='mt-5'>
-        <vegefood-pagination 
-          total="${this.state.products.length}"
-          limit="${this.state.limit}"
-          current="${this.state.currentPage}"
-        ></vegefood-pagination>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-10 mb-5 text-center">
+            <ul class="product-category"></ul>
+          </div>
+        </div>  
+        <div class="container mt-5 pt-5">
+          <div class="row">
+            <div class='col-sm-12'>
+              <card-list products='${JSON.stringify(
+            this.sliceData(this.state.currentPage)
+          )}'></card-list>
+          <div class='mt-5'>
+          <vegefood-pagination 
+            total="${this.state.products.length}"
+            limit="${this.state.limit}"
+            current="${this.state.currentPage}"
+          ></vegefood-pagination>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   	`;
   }
 }
