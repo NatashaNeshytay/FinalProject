@@ -25,7 +25,7 @@ class CategoryForm extends Component {
   render() {
     return `
     <form>
-      <label  class="form-label">Create category</label>
+      <label  class="form-label">Создать категорию</label>
       <input name="title" type="text" class="form-control" placesholder="Type a category name" required>
     </form>
        `;

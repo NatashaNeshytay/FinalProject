@@ -94,7 +94,7 @@ class ProductForm extends Component {
             <textarea name="description" class="form-control" rows="3" required></textarea>
           </label>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button> 
+        <button type="submit" class="btn btn-primary">Сохранить</button> 
       </form>
     `;
   }
